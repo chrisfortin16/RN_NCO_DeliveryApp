@@ -23,16 +23,13 @@ let app = new Firebase("fortinncofirebase.firebaseio.com");
 class HeaderMenu extends Component {
 
   logout(){
-    AsyncStorage.removeItem('user_data').then(() => {
-      app.unauth();
       this.props.navigator.push({
-        component: SignupLogin
+        id: 'SignupLogin'
       });
-    });
   }
 
   render() {
-    
+
     return (
       <View style={styles.container}>
         <View style={styles.headerWrapper}>

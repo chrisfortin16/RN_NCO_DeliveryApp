@@ -8,17 +8,18 @@ import React, {
   StyleSheet,
   Text,
   Switch,
+  Navigator,
   TouchableHighlight,
   Image,
   View
 } from 'react-native';
 
-import HeaderMenu from './components/HeaderMenu';
-import HeaderMenuBack from './components/HeaderMenuBack';
-import Userlist from './components/Userlist';
-//var HeaderMenu = require('./components/HeaderMenu')
-//var HeaderMenuBack = require('./components/HeaderMenuBack')
-//var Userlist = require('./components/Userlist')
+// import HeaderMenu from './components/HeaderMenu';
+// import HeaderMenuBack from './components/HeaderMenuBack';
+// import Userlist from './components/Userlist';
+var HeaderMenu = require('./components/HeaderMenu')
+var HeaderMenuBack = require('./components/HeaderMenuBack')
+var Userlist = require('./components/Userlist')
 
 class Userinfo extends Component {
 

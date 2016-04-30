@@ -8,11 +8,14 @@ import React, {
   StyleSheet,
   Text,
   Image,
+  Navigator,
   TouchableHighlight,
   Switch,
   TouchableOpacity,
   View
 } from 'react-native';
+
+var Userinfo = require('../Userinfo')
 
 class Userlist extends Component {
 
@@ -24,10 +27,11 @@ class Userlist extends Component {
   }
 
   onButtonPress(){
-    console.log("Fire");
+    console.log('Debug', this.props.navigator);
     this.props.navigator.push({
-      component: 'Userinfo',
+      id: Userinfo,
     })
+    console.log('Debug1', this.props.navigator);
   }
 
   render() {

@@ -8,6 +8,7 @@ import React, {
   StyleSheet,
   Text,
   Image,
+  Navigator,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -26,15 +27,12 @@ class HeaderMenuBack extends Component {
       // }
     })
   }
+
   logout(){
-    AsyncStorage.removeItem('user_data').then(() => {
-      app.unauth();
-      this.props.navigator.popToTop({
-
-      });
-    });
+    this.props.navigator.popToTop({
+      id: 'SignupLogin',
+    })
   }
-
   render() {
     return (
       <View style={styles.container}>

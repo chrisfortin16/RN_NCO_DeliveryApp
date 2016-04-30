@@ -11,14 +11,11 @@ import React, {
   View,
   TextInput,
   TouchableHighlight,
-  ScrollView,
-  AsyncStorage
+  ScrollView
 } from 'react-native';
 
-import Header from './components/Header';
-import Deliveries from './Deliveries';
-//var Header = require('./components/Header');
-//var Deliveries = require('./Deliveries');
+var Header = require('./components/Header');
+var Deliveries = require('./Deliveries');
 
 import Firebase from 'firebase';
 let app = new Firebase("fortinncofirebase.firebaseio.com");
@@ -37,81 +34,79 @@ class SignupLogin extends Component {
     };
   }
 
-  // onButtonPress(){
-  //   this.props.navigator.push({
-  //     id: 'Deliveries',
-  //   })
-  // }
+  onButtonPress(){
+    this.props.navigator.push({
+      id: 'Deliveries',
+    })
+  }
 
-  login(){
-
-      this.setState({
-        loaded: false
-      });
-      app.authWithPassword({
-        "email": this.state.email,
-        "password": this.state.password
-      }, (error, user_data) => {
-
-        this.setState({
-          loaded: true
-        });
-
-        if(error){
-          alert('Login Failed. Please try again');
-        }else{
-          AsyncStorage.setItem('user_data', JSON.stringify(user_data));
-          this.props.navigator.push({
-            component: Deliveries
-          });
-        }
-      });
-    }//close login
-
-
-
-    signup(){
-
-    this.setState({
-      loaded: false
-    });
-
-    app.createUser({
-      'email': this.state.Signupemail,
-      'password': this.state.Signuppassword
-    }, (error, userData) => {
-
-      if(error){
-        switch(error.code){
-
-          case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the email is already in use.");
-          break;
-
-          case "INVALID_EMAIL":
-            alert("The specified email is not a valid email.");
-          break;
-
-          default:
-            alert("Error creating user:");
-        }
-
-      }else{
-        alert('Your account was created!');
-      }
-
-      this.setState({
-        Signupemail: '',
-        Signuppassword: '',
-      });
-
-    });
-
-  }//close signup
+  // login(){
+  //
+  //     this.setState({
+  //       loaded: false
+  //     });
+  //     app.authWithPassword({
+  //       "email": this.state.email,
+  //       "password": this.state.password
+  //     }, (error, user_data) => {
+  //
+  //       this.setState({
+  //         loaded: true
+  //       });
+  //
+  //       if(error){
+  //         alert('Login Failed. Please try again');
+  //       }else{
+  //         AsyncStorage.setItem('user_data', JSON.stringify(user_data));
+  //         this.props.navigator.push({
+  //           component: Deliveries
+  //         });
+  //       }
+  //     });
+  //   }//close login
+  //
+  //
+  //
+  //   signup(){
+  //
+  //   this.setState({
+  //     loaded: false
+  //   });
+  //
+  //   app.createUser({
+  //     'email': this.state.Signupemail,
+  //     'password': this.state.Signuppassword
+  //   }, (error, userData) => {
+  //
+  //     if(error){
+  //       switch(error.code){
+  //
+  //         case "EMAIL_TAKEN":
+  //           alert("The new user account cannot be created because the email is already in use.");
+  //         break;
+  //
+  //         case "INVALID_EMAIL":
+  //           alert("The specified email is not a valid email.");
+  //         break;
+  //
+  //         default:
+  //           alert("Error creating user:");
+  //       }
+  //
+  //     }else{
+  //       alert('Your account was created!');
+  //     }
+  //
+  //     this.setState({
+  //       Signupemail: '',
+  //       Signuppassword: '',
+  //     });
+  //
+  //   });
+  //
+  // }//close signup
 
   render() {
-    console.log("SU nav: ", this.props.navigator);
-    console.log('state: ', this.state);
     return (
       <View style={styles.container}>
         <View style={styles.headerBar}>
@@ -137,7 +132,7 @@ class SignupLogin extends Component {
                 secureTextEntry = {true} />
               <TouchableHighlight
                 style={styles.tapHighlight}
-                onPress={this.signup.bind(this)}>
+                onPress={this.onButtonPress.bind(this)}>
                   <View style={styles.buttonContainer}>
                   <Text style={styles.tapText}>Sign Up</Text>
                   </View>
@@ -160,7 +155,7 @@ class SignupLogin extends Component {
                 secureTextEntry = {true} />
               <TouchableHighlight
                 style={styles.tapHighlight}
-                onPress={this.login.bind(this)}>
+                onPress={this.onButtonPress.bind(this)}>
                   <View style={styles.buttonContainer}>
                     <Text style={styles.tapText}>Login</Text>
                     </View>

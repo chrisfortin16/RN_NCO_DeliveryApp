@@ -26,48 +26,47 @@ import Firebase from 'firebase';
 
 let app = new Firebase("fortinncofirebase.firebaseio.com");
 
-class Deliveries extends React.Component {
+class Deliveries extends Component {
 
-  constructor(props){
-    super(props);
-
-    this.state = {
-      name: '',
-      address: '',
-      phone: '',
-      email: '',
-      amount: '',
-      loaded: true
-    }
+  onButtonPress(){
+    this.props.navigator.push({
+      id: 'Userinfo',
+      // passProps: {
+      //   name: this.props.person.name
+      // }
+    })
   }
 
-  // onButtonPress(){
-  //   console.log(this.props.navigator);
-  //   this.props.navigator.push({
-  //     component: Userinfo
-  //     // passProps: {
-  //     //   name: this.props.person.name
-  //     // }
-  //   })
+  // constructor(props){
+  //   super(props);
+  //
+  //   this.state = {
+  //     name: '',
+  //     address: '',
+  //     phone: '',
+  //     email: '',
+  //     amount: '',
+  //     loaded: true
+  //   }
   // }
 
-  componentWillMount(){
-    app.on("value", function(snapshot) {
-      console.log(snapshot.val());
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
-  }
-
-  componentWillMount(){
-    AsyncStorage.getItem('user_data').then((user_data_json) => {
-      let user_data = JSON.parse(user_data_json);
-      this.setState({
-        user: user_data,
-        loaded: true
-      });
-    });
-  }
+  // componentWillMount(){
+  //   app.on("value", function(snapshot) {
+  //     console.log(snapshot.val());
+  //   }, function (errorObject) {
+  //     console.log("The read failed: " + errorObject.code);
+  //   });
+  // }
+  //
+  // componentWillMount(){
+  //   AsyncStorage.getItem('user_data').then((user_data_json) => {
+  //     let user_data = JSON.parse(user_data_json);
+  //     this.setState({
+  //       user: user_data,
+  //       loaded: true
+  //     });
+  //   });
+  // }
 
   render() {
     // console.log("nav: ", this.props.navigator);
@@ -84,12 +83,12 @@ class Deliveries extends React.Component {
                 <Text style={styles.smallText}>Info</Text>
               </View>
             </View>
-            <Userlist style={styles.userlist} name={fakedata[0]}/>
-            <Userlist style={styles.userlist} name={fakedata[1]}/>
-            <Userlist style={styles.userlist} name={fakedata[2]}/>
-            <Userlist style={styles.userlist} name={fakedata[3]}/>
-            <Userlist style={styles.userlist} name={fakedata[4]}/>
-            <Userlist style={styles.userlist} name={fakedata[5]}/>
+            <Userlist style={styles.userlist} navigator={this.props._navigator} name={fakedata[0]}/>
+            <Userlist style={styles.userlist} navigator={navigator} name={fakedata[1]}/>
+            <Userlist style={styles.userlist} navigator={navigator} name={fakedata[2]}/>
+            <Userlist style={styles.userlist} navigator={navigator} name={fakedata[3]}/>
+            <Userlist style={styles.userlist} navigator={navigator} name={fakedata[4]}/>
+            <Userlist style={styles.userlist} navigator={navigator} name={fakedata[5]}/>
           </View>
       </View>
     );
@@ -155,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = 'Deliveries';
+module.exports = Deliveries;

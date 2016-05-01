@@ -26,7 +26,7 @@ import Firebase from 'firebase';
 
 let app = new Firebase("fortinncofirebase.firebaseio.com");
 
-class Deliveries extends React.Component {
+class Deliveries extends Component {
 
   constructor(props){
     super(props);
@@ -40,16 +40,6 @@ class Deliveries extends React.Component {
       loaded: true
     }
   }
-
-  // onButtonPress(){
-  //   console.log(this.props.navigator);
-  //   this.props.navigator.push({
-  //     component: Userinfo
-  //     // passProps: {
-  //     //   name: this.props.person.name
-  //     // }
-  //   })
-  // }
 
   componentWillMount(){
     app.on("value", function(snapshot) {
@@ -70,7 +60,6 @@ class Deliveries extends React.Component {
   }
 
   render() {
-    // console.log("nav: ", this.props.navigator);
     return (
       <View style={styles.container}>
         <HeaderMenu style={styles.headerLogo} navigator={this.props.navigator} name="HeaderMenu"/>
@@ -155,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = 'Deliveries';
+module.exports = Deliveries;

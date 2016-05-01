@@ -8,6 +8,7 @@ import React, {
   StyleSheet,
   Text,
   Image,
+  Navigator,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -18,23 +19,14 @@ let app = new Firebase("fortinncofirebase.firebaseio.com");
 class HeaderMenuBack extends Component {
 
   onButtonPress(){
-    this.props.navigator.pop({
-      id: 'Deliveries',
-      passProps: 'passProps Example',
-      // passProps: {
-      //   name: this.props.person.name
-      // }
+    console.log('something broken')
+  }
+
+  logout(){
+    this.props.navigator.popToTop({
+      id: 'SignupLogin',
     })
   }
-  logout(){
-    AsyncStorage.removeItem('user_data').then(() => {
-      app.unauth();
-      this.props.navigator.popToTop({
-
-      });
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
